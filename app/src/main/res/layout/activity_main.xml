@@ -6,70 +6,196 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="437dp"
+        android:layout_height="29dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="hx-kong@copyright 2016-2019."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="button2"
-        app:layout_constraintStart_toEndOf="@id/button"
-        app:layout_constraintTop_toBottomOf="parent" />
+        android:id="@+id/btnImg"
+        android:layout_width="100dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="32dp"
+        android:text="更改"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="266dp"
-        android:layout_height="90dp"
+        android:id="@+id/txtComp2"
+        android:layout_width="100dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="32dp"
         android:gravity="center"
-        android:includeFontPadding="false"
-        android:text="Hello World!"
-        android:textSize="36sp"
-        app:layout_constraintRight_toRightOf="parent"
+        android:text="公司Logo"
+        app:layout_constraintStart_toEndOf="@+id/editText4"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#888"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/editComp"
+        android:layout_width="264dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="请输入公司名称 例如:韩讯联控"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/txtComp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+    <TextView
+        android:id="@+id/txtComp"
+        android:layout_width="100dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="38dp"
+        android:gravity="center"
+        android:text="公司名称"
+        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/txtComp2" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="100dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="ip地址"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="100dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="端口"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="10.0.0.151"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="5998"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="100dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="16dp"
+        android:text="保存信息"
+        app:layout_constraintStart_toEndOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/editComp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="admin"
+        app:layout_constraintStart_toEndOf="@+id/txtAccount"
+        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="admin"
+        app:layout_constraintStart_toEndOf="@+id/txtPasswd"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <TextView
+        android:id="@+id/txtAccount"
+        android:layout_width="100dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="用户名"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/txtPasswd"
+        android:layout_width="100dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="密码"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAccount" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/txtComp2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@drawable/logo_default" />
 
-    <LinearLayout
-        android:id="@+id/menuList"
-        android:layout_width="200dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="60dp"
-        android:background="#28BDFF"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ListView
-            android:id="@+id/lv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="437dp"
+        android:layout_height="29dp"
+        android:gravity="center"
+        android:text="技术支持东莞市韩讯联控信息科技有限公司"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

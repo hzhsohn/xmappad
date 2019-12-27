@@ -1,6 +1,5 @@
-package android.zh.xmappad;
+package android.zh.xmappad.lan;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,13 +7,15 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.zh.xmappad.BaseFragment;
+import android.zh.xmappad.R;
 
 
-public class MyMain2 extends BaseFragment {
+public class FGM_Weather extends BaseFragment {
     Context context;
 
-    public static MyMain2 newInstance(String param1) {
-        MyMain2 fragment = new MyMain2();
+    public static FGM_Weather newInstance(String param1) {
+        FGM_Weather fragment = new FGM_Weather();
         Bundle args = new Bundle();
         args.putString("info", param1);
         fragment.setArguments(args);
@@ -24,7 +25,7 @@ public class MyMain2 extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fgm_main2, container, false);
+        return inflater.inflate(R.layout.fgm_weather, container, false);
     }
 
     @Override

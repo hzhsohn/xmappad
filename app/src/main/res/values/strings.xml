@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">xmappad</string>
+
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="warning">警告</string>
+    <string name="alert">提示</string>
+
+    <string name="houseKeeperHint">检测不到可用的SD卡</string>
+    <string name="loadHintInfo">SD卡操作失败</string>
+    <string name="no_strong_permission_do_myself">请手动设置允许访问储存器的权限</string>
+    <string name="no_strong_permission_tips">请通过访问储存器的权限,否则不能正常使用此软件</string>
+    <string name="versionUpdate">检测到新版本,是否下载?</string>
+    <string name="downloadVersionCode">下载的版本号:</string>
+    <string name="curVersionCode">当前版本号:</string>
+    <string name="versionUpdateing">正在下载中...</string>
+    <string name="download">下载</string>
+    <string name="ver_download_ok">下载完成,正在安装!</string>
+    <string name="talkLater">取消</string>
+    <string name="Loading">加载中</string>
+
+
 </resources>
