@@ -158,25 +158,40 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            if(txthost.getText().equals(""))
+            if(txthost.getText().toString().equals(""))
             {
-
+                txthost.setFocusable(true);
+                txthost.requestFocus();
+                AssertAlert.show(_cxt,getString(R.string.alert),"域名或IP不能为空");
+                return;
             }
-            if(txtport.getText().equals(""))
+            if(txtport.getText().toString().equals(""))
             {
-
+                txtport.setFocusable(true);
+                txtport.requestFocus();
+                AssertAlert.show(_cxt,getString(R.string.alert),"端口不能为空");
+                return;
             }
-            if(txtuser.getText().equals(""))
+            if(txtuser.getText().toString().equals(""))
             {
-
+                txtuser.setFocusable(true);
+                txtuser.requestFocus();
+                AssertAlert.show(_cxt,getString(R.string.alert),"用户名不能为空");
+                return;
             }
-            if(txtpasswd.getText().equals(""))
+            if(txtpasswd.getText().toString().equals(""))
             {
-
+                txtpasswd.setFocusable(true);
+                txtpasswd.requestFocus();
+                AssertAlert.show(_cxt,getString(R.string.alert),"密码不能为空");
+                return;
             }
-            if(txtcompany.getText().equals(""))
+            if(txtcompany.getText().toString().equals(""))
             {
-
+                txtcompany.setFocusable(true);
+                txtcompany.requestFocus();
+                AssertAlert.show(_cxt,getString(R.string.alert),"企业名称不能为空");
+                return;
             }
 
             /*
