@@ -37,6 +37,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import ext.file.DeleteFile;
 import ext.func.AssertAlert;
 import ext.img.SquareBitmap;
 import ext.magr.HTTPData;
@@ -44,7 +45,7 @@ import ext.file.CopyFile;
 
 public class ModifyIcon extends AppCompatActivity {
 
-    final String uid = "company_user";
+    static final String uid = "company_user";
 
     final int TAKE_CAMERA = 1;
     final int CHOOSE_PHOTO = 2;
@@ -53,6 +54,7 @@ public class ModifyIcon extends AppCompatActivity {
     ImageView icon;
     String uploadImagePath = null;
     TextView txttip;
+    boolean is_update_img_to_web;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,9 +76,10 @@ public class ModifyIcon extends AppCompatActivity {
 
     public void btnSelectImg(View v)
     {
+        is_update_img_to_web=false;
         //选择相册图片
         if (uid != null) {
-            String stricon = getUserIconLocalPath(context,"tmp_icon_" + uid);
+            String stricon = getUserIconLocalPath(context,"select_img.tmp");
             File imageFile = new File(stricon);
             if (imageFile.exists()) {
                 imageFile.delete();
@@ -105,7 +108,7 @@ public class ModifyIcon extends AppCompatActivity {
     //本地储存器的头像
     static public String getUserIconLocalPath(Context cxt, String filename)
     {
-        String dir= cxt.getCacheDir()+"/xmappad/";
+        String dir= cxt.getCacheDir()+"/info/";
         File file = new File(dir);
         if (!file.exists()) {
             file.mkdir();
@@ -286,6 +289,11 @@ public class ModifyIcon extends AppCompatActivity {
             //上传成功后替换本地图片
             String stricon = getUserIconLocalPath(context,uid);
             CopyFile.copy(uploadImagePath, stricon);
+            //删除旧文件
+            String delimg = getUserIconLocalPath(context,"myicon.tmp");
+            DeleteFile.deleteFile(delimg);
+            String delimg2 = getUserIconLocalPath(context,"select_img.tmp");
+            DeleteFile.deleteFile(delimg2);
 
         } catch (Exception e) {
             Log.v("ModifyIcon", "上传图片出错:" + e.toString());
@@ -324,7 +332,14 @@ public class ModifyIcon extends AppCompatActivity {
             // 如果不是document类型的Uri，则使用普通方式处理
             imagePath = getImagePath(uri, null);
         }
-        displayImage(imagePath); // 根据图片路径显示图片
+
+        //显示并上传图片
+        if(is_update_img_to_web) {
+            displayImageAndUploadToWeb(imagePath);
+        }
+        else{
+            displayImage(imagePath);
+        }
         System.err.println(imagePath);
     }
 
@@ -348,7 +363,37 @@ public class ModifyIcon extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
             //将图片改成正方形,然后保存到临时目录里面
             bitmap=SquareBitmap.centerSquareScaleBitmap(bitmap,500);
-            String stricon = context.getCacheDir() + "/hx-kong/myicon.tmp";
+            String stricon = getUserIconLocalPath(context,"myicon.tmp");
+            try {
+                SquareBitmap.saveBitmap(bitmap,stricon);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //
+            icon.setImageBitmap(bitmap);
+
+            //直接替换本地图片
+            String stricon2 = getUserIconLocalPath(context,uid);
+            CopyFile.copy(stricon,stricon2 );
+            //删除旧文件
+            String delimg = getUserIconLocalPath(context,"myicon.tmp");
+            DeleteFile.deleteFile(delimg);
+            String delimg2 = getUserIconLocalPath(context,"select_img.tmp");
+            DeleteFile.deleteFile(delimg2);
+
+        } else {
+            Toast.makeText(ModifyIcon.this, "failed to get image", Toast.LENGTH_SHORT)
+                    .show();
+        }
+
+    }
+
+    private void displayImageAndUploadToWeb(String imagePath) {
+        if (imagePath != null) {
+            Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+            //将图片改成正方形,然后保存到临时目录里面
+            bitmap=SquareBitmap.centerSquareScaleBitmap(bitmap,500);
+            String stricon = getUserIconLocalPath(context,"myicon.tmp");
             try {
                 SquareBitmap.saveBitmap(bitmap,stricon);
             } catch (IOException e) {
@@ -358,8 +403,8 @@ public class ModifyIcon extends AppCompatActivity {
             icon.setImageBitmap(bitmap);
 
             //上传图片到服务器
-            //uploadImagePath = stricon;
-            //new Thread(uploadTh).start();
+            uploadImagePath = stricon;
+            new Thread(uploadTh).start();
 
         } else {
             Toast.makeText(ModifyIcon.this, "failed to get image", Toast.LENGTH_SHORT)

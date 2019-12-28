@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
@@ -18,11 +20,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.zh.xmappad.update.VersionInfo;
 import android.zh.xmappad.update.VersionListener;
 
+import java.io.File;
+
 import ext.func.AssertAlert;
+import service.ProcessMonitorService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +37,17 @@ public class MainActivity extends AppCompatActivity {
     final String FLAG="MainActivity";
     Context _cxt;
     VersionInfo ver;
+    //
+    EditText txthost;
+    EditText txtport;
+    EditText txtuser;
+    EditText txtpasswd;
+    EditText txtcompany;
+    Button btnImg;
+    Button btnSave;
+    ImageView imgIcon;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +58,18 @@ public class MainActivity extends AppCompatActivity {
         //默认不能打键盘
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        //
-        Button btnImg=(Button)findViewById(R.id.btnImg);
+        //按键
+        btnImg=(Button)findViewById(R.id.btnImg);
         btnImg.setOnClickListener(btnImg_click);
-        Button btnSave=(Button)findViewById(R.id.btn1);
+        btnSave=(Button)findViewById(R.id.btn1);
         btnSave.setOnClickListener(btn1_click);
-
+        imgIcon=(ImageView)findViewById(R.id.imageView);
+        //输入框
+        txthost=(EditText)findViewById(R.id.editText4);
+        txtport=(EditText)findViewById(R.id.editText3);
+        txtuser=(EditText)findViewById(R.id.editText);
+        txtpasswd=(EditText)findViewById(R.id.editText2);
+        txtcompany=(EditText)findViewById(R.id.editComp);
 
         //---------------------------------
         //存储器权限
@@ -74,11 +98,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+        //-----------------------------
+        //
+        //启用后台服务
+        //
+        //APK图标是隐藏的
+        Intent intent = new Intent(_cxt, ProcessMonitorService.class);
+        startService(intent) ;
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        loadInfo();
+    }
+
+    void loadInfo()
+    {
+        //获取图像
+        String stricon = ModifyIcon.getUserIconLocalPath(this,ModifyIcon.uid);
+        File fp = new File(stricon);
+        if (fp.exists()) {
+            Bitmap bm = BitmapFactory.decodeFile(stricon);
+            //将图片显示到ImageView中
+            if (null != bm) {
+                imgIcon.setImageBitmap(bm);
+            } else {
+                imgIcon.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.def_user));
+            }
+        } else {
+            imgIcon.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.def_user));
+        }
     }
 
     //更改图片
@@ -107,14 +158,22 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            /*//跳到下一个窗体
+             txthost;
+             txtport;
+             txtuser;
+             txtpasswd;
+             txtcompany;
+
+            /*
+            //跳到下一个窗体
             Intent intent = new Intent(_cxt, AccountSafe.class);
             Bundle bundle = new Bundle();//该类用作携带数据
             intent.putExtras(bundle);//附带上额外的数据
             //带返回结果
             startActivityForResult(intent, 1000);
             overridePendingTransition(R.anim.in_0, R.anim.in_1);
-*/
+            */
+
             //关闭键盘
             InputMethodManager imm = (InputMethodManager) getSystemService(_cxt.INPUT_METHOD_SERVICE);
             if (imm != null) {
@@ -122,9 +181,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
-
-
-
 
 
     /*

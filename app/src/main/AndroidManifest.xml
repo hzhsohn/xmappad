@@ -34,11 +34,35 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <!--后台-->
+        <service android:name="service.ProcessMonitorService" />
+        <receiver android:name="service.AlarmReceiver">
+            <intent-filter>
+                <action android:name="service.AlarmReceiver" />
+            </intent-filter>
+        </receiver>
+
+        <!--开机启动-->
+        <receiver android:name="service.AppStart">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".MainActivity"  android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <!--
+                隐藏APP图标
+                <action android:name="android.intent.action.VIEW" />
+                -->
+                <!--
+                网页启动APP
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:host="xmappad.main" android:scheme="hxk" />
+                -->
             </intent-filter>
         </activity>
         <activity android:name=".InfoActivity" />
