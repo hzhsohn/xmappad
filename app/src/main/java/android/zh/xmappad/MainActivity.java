@@ -158,11 +158,26 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-             txthost;
-             txtport;
-             txtuser;
-             txtpasswd;
-             txtcompany;
+            if(txthost.getText().equals(""))
+            {
+
+            }
+            if(txtport.getText().equals(""))
+            {
+
+            }
+            if(txtuser.getText().equals(""))
+            {
+
+            }
+            if(txtpasswd.getText().equals(""))
+            {
+
+            }
+            if(txtcompany.getText().equals(""))
+            {
+
+            }
 
             /*
             //跳到下一个窗体
